@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role', 'name', 'surname', 'nick', 'email', 'password',
     ];
 
     /**
@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    //Relacion One to many / de uno a muchos
+   //Obtiene las imagenes creadas de un usuario
+   public function images(){
+       //Devuelve el array de objetos que contiene los comentarios de la imagen
+       return $this->hasMany('App\Images');
+   }
 }
