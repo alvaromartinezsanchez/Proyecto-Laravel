@@ -19,6 +19,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -50,10 +51,16 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Inicio</a>
+                                <a href="{{ route('home') }}" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Subir foto</a>
+                            </li>
+                            
+                            <li>
+                                @if(Auth::user()->image)
+                                <img src="{{ route('user.avatar', ['filename'=>Auth::user()->image]) }}" class="avatar rounded-circle">
+                                @endif
                             </li>
 
                             <li class="nav-item dropdown">
@@ -64,22 +71,23 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                    
+
                                     <a class="dropdown-item" href="">
-                                       Mi perfil
+                                        Mi perfil
                                     </a>
-                                    <a class="dropdown-item" href="">
-                                       Configuracion
+                                    <a class="dropdown-item" href="{{ route('config') }}">
+                                        Configuracion
                                     </a>
                                 </div>
                             </li>
+                            
                             @endguest
                         </ul>
                     </div>

@@ -11,32 +11,17 @@
   |
  */
 
-//Importa namespace
-//use App\Image;
+
 
 Route::get('/', function () {
-/*
-    $images = Image::all();
-    foreach ($images as $image) {
-        echo $image->image_path . "<br>";
-        echo $image->description . "<br>";
-        echo $image->user->name . ' ' . $image->user->surname . "<br>";
 
-        if (count($image->comments) >= 1) {
-            echo '<strong> Comentarios </strong>' . "<br>";
-            foreach ($image->comments as $comment) {
-                echo $comment->user->name." : " . $comment->content . '<br>';
-            }
-        }
-        
-        echo 'LIKES: '.count($image->likes);
-        echo "<hr>";
-    }
-    die();
-*/
     return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/configuracion', 'UserController@config')->name('config');
+Route::post('/user/update', 'UserController@update')->name('user.update');
+Route::post('/user/update_password', 'UserController@update_password')->name('user.update_password');
+Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
