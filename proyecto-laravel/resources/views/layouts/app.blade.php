@@ -54,7 +54,7 @@
                                 <a href="{{ route('home') }}" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Subir foto</a>
+                                <a href="{{ route('image.create') }}" class="nav-link">Subir foto</a>
                             </li>
                             
                             <li>
